@@ -11,8 +11,12 @@ void main(){
 
   dynamic errorMessage='hola'; //por ejemplo puede aquirir un valor de tipo string
   errorMessage = true; //un valor booleano sobre la misma variable
-  errorMessage=[1,2,3,4,5]; //un listado 
-  errorMessage={1,2,3,4,5};; //un set de datos 
+  errorMessage = [1,2,3,4,5]; //un listado 
+  errorMessage = {1,2,3,4,5};; //un set de datos 
+  errorMessage = () => true; //puede ser un valor que retorna alguna funcion 
+  errorMessage = null; //o directamente un valor nulo 
+
+  // errorMessage +=1; en este caso es una funcion no permitida 
 
  print(""" //el contenido entre 3 comillas dobles se define que espera solo variables
 
