@@ -21,5 +21,5 @@ final numberGreatThan5 = numbers.where((num){
 });
 
 print('Elemntos dentro de la lista mayores a 5: $numberGreatThan5');
-print('Elemntos dentro de la lista mayores a 5: ${numberGreatThan5.toSet()}');
+print('Elemntos dentro de la lista mayores a 5: ${numberGreatThan5.toSet()}'); //descarta elementos repetidos
 }
