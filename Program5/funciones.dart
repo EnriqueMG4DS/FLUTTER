@@ -22,3 +22,10 @@ int addTwoNumbers(int a,int b){ //para que la funcion pueda trabajar en este cas
 }
 
 int AddTownNumber(int a,int b)=> a-b; // solo funciona para funciones sencillas
+
+int addTwoNumbersOptional(int a,[int? b]){ // con los [] se determina que su valor no es obligatorio
+
+  b = b ?? 0; // en caso de ser nulo este pasa directamente el valor de 0
+  return a + b ;
+
+}
