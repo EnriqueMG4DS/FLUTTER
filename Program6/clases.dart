@@ -1,0 +1,29 @@
+void main(){
+  //final wolverine = new hero('logan','Regeneracion');
+  final hero wolverine = hero('logan','Regeneracion'); //NO ES NECESARIO USAR EL NEW
+
+  print(wolverine);
+  print(wolverine.name);
+  print(wolverine.power);
+}
+
+class hero{
+  String name;
+  String power;
+
+
+//Primera forma de ingresar datos al objeto
+//  hero(String pName, String pPower) //En este caso es un constrctor sencillo de definir de esta maanera sin uno de llaves solo el :
+//    : name =pName,
+//      power= pPower;
+
+
+//SEGUNDA FORMA DE INGRESAR DATOS A LA CLASE
+
+hero(this.name,this.power);
+
+    //Para almacenar estos datos tienen que estar entre llaves
+    //{name=pName; //Para almacenar un valor sobre el objeto
+    //this.power=pPower;} // Almacenar otro valor al mismo objeto
+  
+}
