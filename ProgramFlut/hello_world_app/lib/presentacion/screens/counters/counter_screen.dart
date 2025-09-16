@@ -1,6 +1,21 @@
 import 'package:flutter/material.dart'; 
-class CounterScreen extends StatelessWidget {
+class CounterScreen extends StatefulWidget { //StatelessWidget es para funciones fijas y no dinamicas
+
+  
   const CounterScreen({super.key});
+
+  @override
+  State<CounterScreen> createState() => _CounterScreenState();
+}
+
+
+
+
+
+
+
+class _CounterScreenState extends State<CounterScreen> {
+  int clickCounter = 0;
 
   @override // SE GENERA UN CONTENEDOR BACIO 
   Widget build(BuildContext context) {
@@ -12,15 +27,20 @@ class CounterScreen extends StatelessWidget {
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center, // Se centra son este comando
-              children: const [
-                Text('100', style:TextStyle(fontSize: 160, fontWeight: FontWeight.w100)),
-                Text('Clicks',style:TextStyle(fontSize: 25))
+              children: [
+                Text('$clickCounter', style: const TextStyle(fontSize: 160, fontWeight: FontWeight.w100)),
+                const Text('Clicks',style:TextStyle(fontSize: 25))
               ],
             ),
             
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
+
+              
+              setState(() {
+                clickCounter ++;
+              });
               
             }, 
             child: const Icon(Icons.plus_one),
