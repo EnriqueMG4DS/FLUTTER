@@ -51,17 +51,20 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
             children: [
               FloatingActionButton(
                 shape: const StadiumBorder(), //Para redondear el boton en este caso
-            onPressed: () {
+            onPressed: (
+              
+            ) {
 
               
               setState(() { //Refresh en el renderizado
-                clickCounter ++;
+                clickCounter =0;
                 
               });
               //setState(() {}); //Esta es otra forma de renderizar sin meter una operacion dentro de
             }, 
             child: const Icon(Icons.refresh_outlined),
           ),
+          const SizedBox(height: 10),
               FloatingActionButton(
                 shape: const StadiumBorder(), //Para redondear el boton en este caso
             onPressed: () {
