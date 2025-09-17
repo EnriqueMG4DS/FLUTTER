@@ -16,7 +16,7 @@ class CounterScreen extends StatefulWidget { //StatelessWidget es para funciones
 
 class _CounterScreenState extends State<CounterScreen> {
   int clickCounter = 0;
-
+  String clic='Clicks';
   @override // SE GENERA UN CONTENEDOR BACIO 
   Widget build(BuildContext context) {
     return Scaffold(// el Scaffols se usa para para centralizar pantallas como la funcion DIV en HTML
@@ -29,7 +29,8 @@ class _CounterScreenState extends State<CounterScreen> {
               mainAxisAlignment: MainAxisAlignment.center, // Se centra son este comando
               children: [
                 Text('$clickCounter', style: const TextStyle(fontSize: 160, fontWeight: FontWeight.w100)),
-                const Text('Clicks',style:TextStyle(fontSize: 25))
+                Text(clic,style:TextStyle(fontSize: 25)),
+                //Text('clic${clickCounter == 1? '':'s'}',style:TextStyle(fontSize: 25))// Otra forma de meter una condicional
               ],
             ),
             
@@ -38,10 +39,11 @@ class _CounterScreenState extends State<CounterScreen> {
             onPressed: () {
 
               
-              setState(() {
+              setState(() { //Refresh en el renderizado
                 clickCounter ++;
+                if(clickCounter==1){clic='Click';}else{clic='Clicks';} 
               });
-              
+              //setState(() {}); //Esta es otra forma de renderizar sin meter una operacion dentro de
             }, 
             child: const Icon(Icons.plus_one),
           )
