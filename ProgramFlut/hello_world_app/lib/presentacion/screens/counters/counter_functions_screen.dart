@@ -49,52 +49,37 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
           floatingActionButton: Column( // El column se utiliza para meter multiples widgets
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              FloatingActionButton(
-                shape: const StadiumBorder(), //Para redondear el boton en este caso
-            onPressed: (
-              
-            ) {
-
-              
-              setState(() { //Refresh en el renderizado
-                clickCounter =0;
-                
-              });
-              //setState(() {}); //Esta es otra forma de renderizar sin meter una operacion dentro de
-            }, 
-            child: const Icon(Icons.refresh_outlined),
-          ),
+          CustomeButton( icon: Icons.refresh_outlined),
           const SizedBox(height: 10),
-              FloatingActionButton(
-                shape: const StadiumBorder(), //Para redondear el boton en este caso
-            onPressed: () {
-
-              
-              setState(() { //Refresh en el renderizado
-                clickCounter ++;
-                
-              });
-              //setState(() {}); //Esta es otra forma de renderizar sin meter una operacion dentro de
-            }, 
-            child: const Icon(Icons.plus_one),
-          ),
+          CustomeButton( icon: Icons.exposure_minus_1),    
 
           const SizedBox(height: 10),
 
-          FloatingActionButton(
-            onPressed: () {
-
-              
-              setState(() { //Refresh en el renderizado
-                clickCounter --;
-                
-              });
-              //setState(() {}); //Esta es otra forma de renderizar sin meter una operacion dentro de
-            }, 
-            child: const Icon(Icons.exposure_minus_1),
-          )
+          CustomeButton( icon: Icons.plus_one)
             ],
           )
+    );
+  }
+}
+
+class CustomeButton extends StatelessWidget {
+  final IconData icon;
+  const CustomeButton({
+    super.key, 
+    required this.icon,
+    
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+    
+        
+        
+        //setState(() {}); //Esta es otra forma de renderizar sin meter una operacion dentro de
+      }, 
+      child:  Icon(icon),
     );
   }
 }
