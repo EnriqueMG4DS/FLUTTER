@@ -49,13 +49,37 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
           floatingActionButton: Column( // El column se utiliza para meter multiples widgets
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-          CustomeButton( icon: Icons.refresh_outlined),
+              CustomeButton(
+                icon: Icons.refresh_rounded,
+                onPressed: (){
+                  setState(() {
+                    clickCounter=0;
+                  });
+                },
+                ),
+          //CustomeButton( icon: Icons.refresh_outlined),
           const SizedBox(height: 10),
-          CustomeButton( icon: Icons.exposure_minus_1),    
+          CustomeButton( 
+            icon: Icons.exposure_minus_1,
+            onPressed: (){
+              setState(() {
+                if(clickCounter==0) return;
+                clickCounter--;
+              });
+            },
+            ),    
 
           const SizedBox(height: 10),
 
-          CustomeButton( icon: Icons.plus_one)
+          CustomeButton( 
+            icon: Icons.plus_one,
+            
+            onPressed: (){
+              setState(() {
+                clickCounter ++;
+              });
+            }
+            )
             ],
           )
     );
@@ -64,22 +88,31 @@ class _CounterFunctionsScreenState extends State<CounterFunctionsScreen> {
 
 class CustomeButton extends StatelessWidget {
   final IconData icon;
+  final VoidCallback? onPressed;
   const CustomeButton({
     super.key, 
     required this.icon,
+    this.onPressed
     
   });
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () {
+      shape: const StadiumBorder(),//Cambia el redondeo del boton
+      enableFeedback: true,
+      elevation: 10, 
+      //autofocus: true,
+      backgroundColor: Colors.redAccent,
+      focusElevation: 8,
+      mini: true,
+      //hoverColor: Colors.green,
+      onPressed: onPressed    /*() {
     
-        
-        
         //setState(() {}); //Esta es otra forma de renderizar sin meter una operacion dentro de
-      }, 
+      }*/, 
       child:  Icon(icon),
+      
     );
   }
 }
