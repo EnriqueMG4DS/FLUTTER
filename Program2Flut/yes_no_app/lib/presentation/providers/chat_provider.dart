@@ -9,7 +9,11 @@ class ChatProvider extends ChangeNotifier{
   ];
 
   Future <void> sendMessage(String text) async {
-    // TODO: implmentar metodo
+    
+    final newMessage = Message(text: text, fromWho: FromWho.me); //Variable de carga de informacion
+    messageList.add(newMessage); // es implementada a la dista "LA LISTA ES DINAMICA"
+  
+    notifyListeners(); //REFERSCA LA PANTALLA POR UN CAMBBIO DETECTADO
   }
 
 }
