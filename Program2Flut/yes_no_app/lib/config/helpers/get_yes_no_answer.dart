@@ -11,11 +11,7 @@ class GetYesNoAnswer {
 
     final yesNoModel= YesNoModel.fromJsonMap(response.data);
     
-    return Message( //mapers
-      text: yesNoModel.answer, 
-      fromWho: FromWho.hers,
-      imageURL: yesNoModel.image
-      );
+    return yesNoModel.toMessageEntity();
 
     
   }
