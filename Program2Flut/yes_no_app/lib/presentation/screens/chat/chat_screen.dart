@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yes_no_app/domain/entities/message.dart';
+import 'package:yes_no_app/presentation/providers/chat_provider.dart';
+import 'package:yes_no_app/presentation/widgets/chat/her_massage_bubble.dart';
+import 'package:yes_no_app/presentation/widgets/chat/my_massage_boubble.dart';
+import 'package:yes_no_app/presentation/widgets/shared/massage_field_box.dart';
 
 //statelessW genera el widget de una forma mas optimizada
 
@@ -31,6 +37,9 @@ class _ChatView extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+
+    final chatProvider= context.watch<ChatProvider>(); // Para darle una fijacion de que este pendiente de los cambios
+
     return SafeArea( //Se extrae el widgwt para respetar la barra de gestos de un dispositivo tactil
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -38,17 +47,28 @@ class _ChatView extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: 100, // Limita el espacio asignado del body en este caso
+                controller: chatProvider.chatScrollController,
+                itemCount: chatProvider.messageList.length, // Limita el espacio asignado del body en este caso
                 itemBuilder: (context, index) {
-                
-                  return Text('Indice: $index');
+                  final message = chatProvider.messageList[index];
+                  return(message.fromWho== FromWho.hers)
+                    ? HerMessageBubble()
+                    : MyMassageBoubble(message: message);
+
+                  //return Text('Indice: $index');
               },), //BUILDER es una herramienta de widgets en contsante cambio es mas interactiva
             ),
             
-            Text('Mundo')
+            //CAJAS DE TEXTO DE MENSAJES
+            MassageFieldBox(
+              onValue:(value) => chatProvider.sendMessage(value),// al ser llamado manda directamente lo ingresado en la caja de texto a la lista de los mensajes
+              //onValue: chatProvider.sendMessage, // una forma mas corta de almacenar los datos
+            ),
+            //Text('Mundo')
           ],
         ),
       ),
-    );
+    ); 
   }
 }
+

@@ -1,23 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_app/config/helpers/get_yes_no_answer.dart';
 import 'package:yes_no_app/domain/entities/message.dart';
 
 class ChatProvider extends ChangeNotifier{
 
   final ScrollController chatScrollController =ScrollController();
+  final GetYesNoAnswer getYesNoAnswer= GetYesNoAnswer();
 
   List<Message> messageList=[
-    Message(text: 'Hola juan', fromWho: FromWho.me),
-    Message(text: 'Ya regresaste del trabajo', fromWho: FromWho.me),
+    Message(text: 'Hola juan', fromWho: FromWho.me, imageURL: null),
+    Message(text: 'Ya regresaste del trabajo', fromWho: FromWho.me, imageURL: null),
   ];
 
   Future <void> sendMessage(String text) async {
     if(text.isEmpty) return; // si el contenido de esta variable esta vacia, no guardes elementos
-    final newMessage = Message(text: text, fromWho: FromWho.me); //Variable de carga de informacion
+    final newMessage = Message(text: text, fromWho: FromWho.me, imageURL: null); //Variable de carga de informacion
     messageList.add(newMessage); // es implementada a la dista "LA LISTA ES DINAMICA"
-  
+
+    if(text.endsWith('?')){// Si el ultimo caracter del mensaje es igual a,
+      await herReply();
+    }
+
     notifyListeners(); //REFERSCA LA PANTALLA POR UN CAMBBIO DETECTADO
     moveScrollToButton();
   }
+
+Future<void> herReply() async{
+  final herMassage= await getYesNoAnswer.getAnswer();
+  messageList.add(herMassage);
+  notifyListeners();
+  moveScrollToButton();
+}
 
 
   Future <void> moveScrollToButton() async{

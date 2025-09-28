@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 class MassageFieldBox extends StatelessWidget {
-  const MassageFieldBox({super.key});
+
+final ValueChanged<String> onValue;
+
+  const MassageFieldBox({
+    super.key,
+    required this.onValue
+    });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +30,8 @@ class MassageFieldBox extends StatelessWidget {
           icon: Icon(Icons.send_outlined),
           onPressed: (){
             final textValue= textControlle.value.text; //Almacena su valor en una variable y lo convierte un elemento de tipo texto
-            print('button: $textValue'); //evento al presionar el boton
+            //print('button: $textValue'); //evento al presionar el boton
+              onValue(textValue); //Carga el valor en la variable
             textControlle.clear();
           },
         )
@@ -39,6 +46,7 @@ class MassageFieldBox extends StatelessWidget {
       decoration: inputDecoration,
       onFieldSubmitted: (value) { //reacciona al ser precionado 
         print('Sumit value $value'); //guarda la cadena completa
+        onValue(value);
         textControlle.clear();//Limpia la bandeja al dar enter
         focusNode.requestFocus(); //su fucion es mantenerse clicqueado en este caso se mantiene sobre la caja de texto
       },
