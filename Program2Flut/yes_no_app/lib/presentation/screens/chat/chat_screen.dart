@@ -23,7 +23,7 @@ class ChatScreen extends StatelessWidget {
             backgroundImage: NetworkImage('https://64.media.tumblr.com/490ad7da5be4ae505a85474fa47395cf/91720597947c06c8-88/s500x750/1093c7b9fbc7bd5e5f99089bf3993f93e81ed0c8.pnj'),
           ),
         ),//El leading maneja un apartado para igresar algun logotipo
-        title: Text('Hola mundo'),
+        title: Text('Julia'),
         centerTitle: false, //ajusta el centrado de texto
       ),
       body: 
@@ -52,7 +52,7 @@ class _ChatView extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final message = chatProvider.messageList[index];
                   return(message.fromWho== FromWho.hers)
-                    ? HerMessageBubble()
+                    ? HerMessageBubble(message: message)
                     : MyMassageBoubble(message: message);
 
                   //return Text('Indice: $index');

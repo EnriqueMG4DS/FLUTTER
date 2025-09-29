@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_app/domain/entities/message.dart';
 class HerMessageBubble extends StatelessWidget {
-  const HerMessageBubble({super.key});
+final Message message; 
 
+  const HerMessageBubble({
+    super.key,
+    required this.message,
+    });
+  
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
@@ -16,13 +22,13 @@ class HerMessageBubble extends StatelessWidget {
             borderRadius: BorderRadius.circular(20) //Forma redondeada del contenido
 
           ),
-          child: const Padding(
+          child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Text('Hola Mundo ', style: TextStyle(color: Colors.white),),
+            child: Text(message.text, style: TextStyle(color: Colors.white),),
           ),
         ),
         const SizedBox(height: 5,),
-        _ImageBubble(),
+        _ImageBubble(message.imageURL!),
         const SizedBox(height: 10,)
         //todo: imagen
       ],
@@ -30,21 +36,22 @@ class HerMessageBubble extends StatelessWidget {
   }
 }
 
-class _ImageBubble extends StatefulWidget {
+class _ImageBubble extends StatelessWidget {
+  
+  final String imageURL;
   
 
-  @override
-  State<_ImageBubble> createState() => __ImageBubbleState();
-}
+  const _ImageBubble(this.imageURL);
 
-class __ImageBubbleState extends State<_ImageBubble> {
+  
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size; //Almacena las dimenciones exactas de un dispositivo
     print(size);//Encontramos las dimenciones de un dispositivo desde la terminal
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
-      child: Image.network('https://yesno.wtf/assets/yes/9-6403270cf95723ae4664274db51f1fd4.gif',
+      child: Image.network(imageURL,
       width: size.width* .7,//especifica un tamano de imagen al mostrarse
       height: 150,
       fit: BoxFit.cover,

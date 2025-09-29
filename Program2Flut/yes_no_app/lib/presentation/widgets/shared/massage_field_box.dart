@@ -20,7 +20,7 @@ final ValueChanged<String> onValue;
     );
 
     final inputDecoration= InputDecoration(
-      hintText: 'End your massage with a "?"', //Mensaje previo en la caja de texto
+      hintText: 'End your message with a "?"', //Mensaje previo en la caja de texto
         enabledBorder: outlineInputBorder,
         focusedBorder: outlineInputBorder,
         filled: true, //Rellena el contenido de color de la caja de texto
